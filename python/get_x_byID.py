@@ -12,9 +12,11 @@ locale.setlocale(locale.LC_TIME, 'fr_FR')
 # Configuration de l'analyse des arguments
 parser = argparse.ArgumentParser(description='Fetch tweets for a given username.')
 parser.add_argument('username', type=str, help='Twitter username')
+parser.add_argument('candidate_id', type=str, help='Candidate ID')
 args = parser.parse_args()
 
 username = args.username
+candidate_id = args.candidate_id
 url = f"https://syndication.twitter.com/srv/timeline-profile/screen-name/{username}"
 
 r = requests.get(url)
@@ -54,8 +56,8 @@ tweets.sort(reverse=True, key=lambda x: x[0])
 output_dir = r'D:\reconquete\tweets'
 os.makedirs(output_dir, exist_ok=True)
 
-# Générer le nom de fichier avec le chemin complet
-output_filename = os.path.join(output_dir, f"{username}_tweets.txt")
+# Générer le nom de fichier avec le chemin complet en utilisant l'ID du candidat
+output_filename = os.path.join(output_dir, f"{candidate_id}.txt")
 
 # Écrire les tweets dans le fichier
 with open(output_filename, 'w', encoding='utf-8') as file:

@@ -1,3 +1,4 @@
+# utilisation: python get_x.py <username>
 import requests
 import json
 import argparse
