@@ -1,0 +1,13 @@
+<body>
+  <h1>Maurice Portiche - Ancien Ambassadeur de France et Candidat pour le Parti Reconquête!</h1>
+
+  <h2>Parcours politique</h2>
+  <p>Maurice Portiche, né en 1942, est un diplomate français de carrière, ayant occupé divers postes importants au sein du ministère des Affaires étrangères. Il a commencé sa carrière en tant qu'enseignant avant d'entrer dans la diplomatie en 1974, après avoir obtenu une licence en droit et des diplômes de l'IEP-Paris et de l'École nationale des langues orientales.</p>
+  <p>Son parcours diplomatique comprend plusieurs missions en Asie et en Afrique. En Asie, il a été troisième secrétaire à Vientiane, au Laos, en 1975, puis conseiller culturel à Hong Kong et à Pékin dans les années 1980. En Afrique, il a occupé des postes au Burkina Faso, où il a été ambassadeur de France à Ouagadougou de 1999 à 2003. Pendant son mandat, il a travaillé à renforcer les relations franco-burkinabé, particulièrement durant la crise ivoirienne.</p>
+  <p>Portiche a également été consul général à Osaka et à Boston, et a servi dans divers rôles au sein de l'administration centrale du Quai d'Orsay, y compris au service des affaires francophones. Son expertise s'étend donc sur plusieurs continents et inclut une gestion diplomatique délicate en période de crise (Lefaso).</p>
+
+  <h2>Installé à Budapest</h2>
+  <p>Dans un entretien sur <a href="https://www.youtube.com/watch?v=8tzXprehgVI">Youtube</a> du 28/05/24, Maurice Portiche a expliqué qu'il s'est installé de manière permanente à Budapest depuis début 2020, principalement en réponse à la crise du COVID-19. Avant cela, il vivait et travaillait en Chine, mais a dû déménager en raison des restrictions et arrêts d'activités liés à la pandémie. Budapest l'a charmé dès sa première visite il y a dix ans, séduit par son caractère provincial, son architecture historique, et son ambiance romantique évoquant l'Europe centrale d'il y a un siècle.</p>
+  <p>Portiche a également exprimé des préoccupations concernant la dégradation de la sécurité en France, qu'il attribue en partie à l'immigration. Il compare son expérience de vie à Budapest à celle de la France des années 60 à 80, où il ressent une plus grande tranquillité et moins de contraintes sociales. Selon lui, la Hongrie offre un cadre de vie plus sûr et plus homogène, sans les problèmes sociaux et de sécurité qu'il perçoit en France. Il apprécie particulièrement le contrôle strict de l'immigration en Hongrie, où les politiques permettent une intégration économique des immigrants sans impact culturel ou social négatif, contrastant avec la situation française.</p>
+</body>
+

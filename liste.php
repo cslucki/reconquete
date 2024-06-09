@@ -146,8 +146,8 @@ $(document).ready(function(){
                 $.each(records, function(index, record) {
                     var $tr = $('<tr>');
                     $tr.append('<td><a href="#" class="details-link" data-id="' + record.id + '">' + record.id + '</a></td>');
-                    $tr.append('<td><a href="' + record.twitter + '" target="_blank">' + record.twitter + '</a></td>');
                     $tr.append('<td><a href="#" class="details-link" data-id="' + record.id + '">' + record.nom + '</a></td>');
+                    $tr.append('<td><a href="' + record.twitter + '" target="_blank">' + record.twitter + '</a></td>');
                     $tbody.append($tr);
                 });
 
