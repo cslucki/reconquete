@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
-    if ($id >= 1 && $id <= 80) {
+    if ($id >= 1 && $id <= 81) {
         $file = __DIR__ . '/fiches/' . $id . '.php';
         if (file_exists($file)) {
             include $file;
