@@ -89,6 +89,9 @@
                         var msg = "Désolé, une erreur s'est produite: ";
                         $("#details-container").html(msg + xhr.status + " " + xhr.statusText);
                     } else {
+                        // Ajouter la photo du candidat à la fin de la fiche
+                        const img = `<img src="images/${id}.jpg" class="rounded-circle" style="width: 200px; height: auto;" alt="Photo de ${id}">`;
+                        $('#details-container').append(img);
                         $('#detailsModal').modal('show');
                     }
                 });
