@@ -35,5 +35,5 @@
     <p>Cette transcription offre un aperçu complet de la rhétorique politique et des stratégies du parti "Reconquête", mettant en lumière leur plateforme conservatrice et les défis qu'ils perçoivent dans la politique française et européenne contemporaine.</p>
 
     <h2>Twitter</h2>
-    <a href="https://x.com/E_Louvel">Compte Twitter d'Elisabeth Louvel</a>
+    <p><a href="https://x.com/E_Louvel">https://x.com/E_Louvel</a></p>
 </body>

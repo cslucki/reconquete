@@ -16,5 +16,5 @@
   <p>Les tweets repostés par Franck Chevrel ciblent principalement Emmanuel Macron avec un ton critique voire moqueur, opposant sa réalité présumée aisée aux réalités de terrain. On note aussi un intérêt pour la liberté d'expression revendiquée par Elon Musk. Cela reflète une ligne politique de droite voire d'extrême droite.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/Franckchc1">Franck Chevrel sur Twitter</a>
+  <p><a href="https://x.com/Franckchc1">Franck Chevrel sur Twitter</a></p>
 </body>

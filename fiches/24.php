@@ -14,5 +14,5 @@
   </ul>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/arno_humbert">Profil Twitter d'Arnaud Humbert</a>
+  <p><a href="https://x.com/arno_humbert">https://x.com/arno_humbert</a></p>
 </body>

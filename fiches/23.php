@@ -28,5 +28,5 @@
   </ul>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/LucyMotherOf4">Profil Twitter de Lucy Georges</a>
+  <p><a href="https://x.com/LucyMotherOf4">https://x.com/LucyMotherOf4</a></p>
 </body>

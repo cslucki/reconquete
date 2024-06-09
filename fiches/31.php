@@ -12,5 +12,5 @@
         <li>Enfin, elle dénonce dans un de ses propres tweets l'approbation d'une attaque terroriste du Hamas avec des drapeaux palestiniens.</li>
     </ul>
     <h2>Twitter</h2>
-    <a href="https://x.com/WendyLonchampt">Wendy Lonchampt</a>
+    <p><a href="https://x.com/WendyLonchampt">Wendy Lonchampt</a></p>
 </body>

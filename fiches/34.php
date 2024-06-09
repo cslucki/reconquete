@@ -23,5 +23,5 @@
     </ul>
     <p>Les tweets de David Meyer adoptent un ton polémique, critiquant vivement les figures de la NUPES comme Mélenchon et Rousseau, tout en faisant la promotion du parti Reconquête dont il est candidat.</p>
     <h2>Twitter</h2>
-    <a href="https://x.com/david_meyer2022">David Meyer</a>
+    <p><a href="https://x.com/david_meyer2022">https://x.com/david_meyer2022</a></p>
 </body>

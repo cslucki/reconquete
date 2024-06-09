@@ -9,5 +9,5 @@
   <p>Il souligne les différences perçues entre les vagues d'immigration européenne et les auteurs d'attentats en France, mettant en lumière l'absence d'attentats commis par des immigrants européens.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/FGaillard21">Franck Gaillard sur Twitter</a>
+  <a href="https://x.com/FGaillard21">https://x.com/FGaillard21</a>
 </body>

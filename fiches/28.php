@@ -11,5 +11,5 @@
   <p>Ses tweets abordent principalement les sujets de l'immigration et de la sécurité, adoptant une rhétorique ferme sur l'immigration vue comme un problème sécuritaire ainsi qu'une remise en cause des politiques sanitaires menées pendant la pandémie.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/S_Blanchon">Stéphane Blanchon sur Twitter</a>
+  <a href="https://x.com/S_Blanchon">https://x.com/S_Blanchon</a>
 </body>

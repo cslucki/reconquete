@@ -12,5 +12,5 @@
         <li>Il rapporte aussi une alerte à la bombe dans son collège et regrette la perte des valeurs des "hussards".</li>
     </ul>
     <h2>Twitter</h2>
-    <a href="https://x.com/BuardSbastien1">Sébastien Buard</a>
+    <p><a href="https://x.com/BuardSbastien1">Sébastien Buard</a></p>
 </body>

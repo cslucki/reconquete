@@ -17,5 +17,5 @@
   <p>Les tweets repostés par Sabine Clément abordent des sujets polémiques comme l'immigration clandestine, les violences urbaines, la laïcité ou les tensions géopolitiques, avec une tonalité générale plutôt critique voire alarmiste sur ces thématiques.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/ClmentSabine">Sabine Clément sur Twitter</a>
+  <p><a href="https://x.com/ClmentSabine">Sabine Clément sur Twitter</a></p>
 </body>

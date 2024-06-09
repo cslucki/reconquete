@@ -20,5 +20,5 @@
     <a href="https://www.la-croix.com/France/Lextreme-droite-manifeste-contre-laccueil-sans-abri-migrants-Grignon-2023-02-11-1201254728">(La Croix)</a></p>
 
     <h2>Twitter</h2>
-    <a href="https://x.com/olivierlecoq">Compte Twitter d'Olivier Le Coq</a>
+    <p><a href="https://x.com/olivierlecoq">https://x.com/olivierlecoq</a></p>
 </body>

@@ -13,6 +13,6 @@
     <li>Elle reposte des tweets indiquant que le média Street Press reçoit des financements de la fondation Soros, et que le maire écologiste de Lyon est épinglé pour avoir pris l'avion malgré ses discours anti-avions.</li>
     </ul>
     <p>Les thématiques récurrentes sont une critique de l'immigration, de l'islam politique, des aides sociales jugées détournées, ainsi que des contradictions des élus de gauche et écologistes sur leurs discours.</p>
-    <h2>Twitter: </h2>
-    <a href="https://x.com/GiraudCorinne3">https://x.com/GiraudCorinne3</a>
+    <h2>Twitter</h2>
+    <p><a href="https://x.com/GiraudCorinne3">https://x.com/GiraudCorinne3</a></p>
 </body>

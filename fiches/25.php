@@ -23,5 +23,5 @@
   <p>En 2021, elle a soutenu la polémique sur le "grand remplacement" évoquée par Eric Zemmour, théorie dénoncée comme complotiste et xénophobe par de nombreux observateurs.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/Pozzo_diBorgo">Geneviève Pozzo di Borgo sur Twitter</a>
+  <a href="https://x.com/Pozzo_diBorgo">https://x.com/Pozzo_diBorgo</a>
 </body>

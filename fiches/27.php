@@ -9,5 +9,5 @@
   <p>Paola Plantier relaie des tweets critiquant la gestion d'Emmanuel Macron, s'oppose à la demande de restitution d'œuvres d'art par l'Algérie, critique l'absence du RN lors d'un vote sur la suppression des privilèges migratoires des Algériens, et soutient la polémique autour du "Cochon Roussi". Ses tweets reflètent une ligne politique plutôt à droite, opposée à l'immigration et critique envers les politiques d'Emmanuel Macron.</p>
 
   <h2>Twitter</h2>
-  <a href="https://x.com/Paola_Plantier">Paola Plantier sur Twitter</a>
+  <a href="https://x.com/Paola_Plantier">https://x.com/Paola_Plantier</a>
 </body>
