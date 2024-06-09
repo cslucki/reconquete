@@ -1,2 +1,3 @@
 images/
-python/
+python/env
+python/__pycache__
