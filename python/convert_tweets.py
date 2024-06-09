@@ -1,5 +1,6 @@
 import os
 import json
+import yaml
 from datetime import datetime
 
 # Dictionnaire pour mapper les mois français aux numéros de mois
@@ -29,6 +30,14 @@ def convertir_date_francaise(date_str):
 # Définir le répertoire contenant les fichiers de tweets
 tweets_directory = r'D:\reconquete\tweets'
 output_file = r'D:\reconquete\sorted_tweets.json'
+data_yaml_file = r'D:\reconquete\data.yaml'
+
+# Lire les données des candidats depuis data.yaml
+with open(data_yaml_file, 'r', encoding='utf-8') as yaml_file:
+    candidates_data = yaml.safe_load(yaml_file)
+
+# Créer un dictionnaire pour accéder rapidement aux noms des candidats par leur ID
+candidates = {str(candidate['id']): candidate['nom'] for candidate in candidates_data}
 
 # Fonction pour convertir un fichier de tweets en JSON
 def collect_tweets(file_path, candidate_id):
@@ -47,6 +56,7 @@ def collect_tweets(file_path, candidate_id):
             elif line.startswith("Tweet:"):
                 tweet['tweet'] = line[len("Tweet:"):].strip()
                 tweet['candidate_id'] = candidate_id
+                tweet['candidate_name'] = candidates.get(candidate_id, 'Inconnu')
                 tweets.append(tweet)
                 tweet = {}
     return tweets
@@ -62,9 +72,9 @@ for filename in os.listdir(tweets_directory):
 # Trier les tweets par date
 all_tweets_sorted = sorted(all_tweets, key=lambda x: x['date'])
 
-# Convertir les dates en format ISO pour le JSON
+# Convertir les dates en format d-m-Y H:i:s pour le JSON
 for tweet in all_tweets_sorted:
-    tweet['date'] = tweet['date'].isoformat()
+    tweet['date'] = tweet['date'].strftime('%d-%m-%Y %H:%M:%S')
 
 # Sauvegarder les tweets triés dans un fichier JSON
 with open(output_file, 'w', encoding='utf-8') as json_file:
