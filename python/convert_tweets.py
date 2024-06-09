@@ -24,15 +24,14 @@ def convertir_date_francaise(date_str):
         if mois in date_str:
             date_str = date_str.replace(mois, numero)
             break
-    return datetime.strptime(date_str, '%d %m %Y, %H:%M:%S').isoformat()
+    return datetime.strptime(date_str, '%d %m %Y, %H:%M:%S')
 
 # Définir le répertoire contenant les fichiers de tweets
 tweets_directory = r'D:\reconquete\tweets'
-output_directory = r'D:\reconquete\converted_tweets'
-os.makedirs(output_directory, exist_ok=True)
+output_file = r'D:\reconquete\sorted_tweets.json'
 
 # Fonction pour convertir un fichier de tweets en JSON
-def convert_tweet_file_to_json(file_path, output_path):
+def collect_tweets(file_path, candidate_id):
     tweets = []
     with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
@@ -47,18 +46,28 @@ def convert_tweet_file_to_json(file_path, output_path):
                     continue
             elif line.startswith("Tweet:"):
                 tweet['tweet'] = line[len("Tweet:"):].strip()
+                tweet['candidate_id'] = candidate_id
                 tweets.append(tweet)
                 tweet = {}
-    
-    with open(output_path, 'w', encoding='utf-8') as json_file:
-        json.dump(tweets, json_file, ensure_ascii=False, indent=4)
+    return tweets
 
-# Parcourir tous les fichiers dans le répertoire des tweets
+# Collecter tous les tweets
+all_tweets = []
 for filename in os.listdir(tweets_directory):
     if filename.endswith(".txt"):
         file_path = os.path.join(tweets_directory, filename)
-        output_path = os.path.join(output_directory, f"{os.path.splitext(filename)[0]}.json")
-        convert_tweet_file_to_json(file_path, output_path)
-        print(f"Fichier converti: {output_path}")
+        candidate_id = os.path.splitext(filename)[0]
+        all_tweets.extend(collect_tweets(file_path, candidate_id))
 
-print("Conversion terminée.")
+# Trier les tweets par date
+all_tweets_sorted = sorted(all_tweets, key=lambda x: x['date'])
+
+# Convertir les dates en format ISO pour le JSON
+for tweet in all_tweets_sorted:
+    tweet['date'] = tweet['date'].isoformat()
+
+# Sauvegarder les tweets triés dans un fichier JSON
+with open(output_file, 'w', encoding='utf-8') as json_file:
+    json.dump(all_tweets_sorted, json_file, ensure_ascii=False, indent=4)
+
+print(f"Les tweets ont été triés et sauvegardés dans {output_file}")
