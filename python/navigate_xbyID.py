@@ -1,4 +1,5 @@
 import time
+import yaml
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
@@ -8,20 +9,31 @@ import argparse
 from dateutil import parser as date_parser
 from babel.dates import format_datetime
 import locale
+import os
 
 # Configurer le locale pour le français
 locale.setlocale(locale.LC_TIME, 'fr_FR')
 
 # Configuration de l'analyse des arguments
-parser = argparse.ArgumentParser(description='Fetch tweets for a given username.')
-parser.add_argument('username', type=str, help='Twitter username')
+parser = argparse.ArgumentParser(description='Fetch tweets for a given candidate ID.')
+parser.add_argument('candidate_id', type=int, help='Candidate ID')
 args = parser.parse_args()
+
+# Lire le fichier data.yaml pour obtenir le nom d'utilisateur Twitter correspondant à l'ID
+with open(r'D:\reconquete\data.yaml', 'r', encoding='utf-8') as file:
+    data = yaml.safe_load(file)
+
+candidate = next((item for item in data if item['id'] == args.candidate_id), None)
+if not candidate:
+    raise ValueError(f"Candidate with ID {args.candidate_id} not found.")
+
+username = candidate['twitter'].split('/')[-1]
 
 # Configuration de Selenium et ChromeDriver
 options = Options()
 options.add_argument("--disable-notifications")
 options.add_argument("--headless")  # Exécuter en mode headless si vous ne voulez pas voir le navigateur
-service = Service('D:\\python\\chromedriver-win64\\chromedriver.exe')  # Assurez-vous que le chemin est correct
+service = Service(r'D:\python\chromedriver-win64\chromedriver.exe')  # Assurez-vous que le chemin est correct
 
 driver = webdriver.Chrome(service=service, options=options)
 
@@ -41,7 +53,7 @@ password_input.send_keys(Keys.RETURN)
 time.sleep(5)  # Attendre le chargement de la page après connexion
 
 # Naviguer vers la page de l'utilisateur
-user_url = f"https://twitter.com/{args.username}"
+user_url = f"https://twitter.com/{username}"
 driver.get(user_url)
 time.sleep(5)
 
@@ -68,7 +80,17 @@ while len(collected_tweets) < max_tweets:
 
 driver.quit()
 
-# Afficher les tweets
-for tweet in collected_tweets:
-    print(f"Date: {tweet[0]}")
-    print(f"Tweet: {tweet[1]}\n")
+# Définir le répertoire de sortie
+output_dir = r'D:\reconquete\tweets'
+os.makedirs(output_dir, exist_ok=True)
+
+# Générer le nom de fichier avec le chemin complet en utilisant l'ID du candidat
+output_filename = os.path.join(output_dir, f"{args.candidate_id}.txt")
+
+# Écrire les tweets dans le fichier
+with open(output_filename, 'w', encoding='utf-8') as file:
+    for tweet in collected_tweets:
+        file.write(f"Date: {tweet[0]}\n")
+        file.write(f"Tweet: {tweet[1]}\n\n")
+
+print(f"Les tweets ont été sauvegardés dans le fichier: {output_filename}")

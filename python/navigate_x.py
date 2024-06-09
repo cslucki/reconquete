@@ -21,6 +21,7 @@ args = parser.parse_args()
 options = Options()
 options.add_argument("--disable-notifications")
 options.add_argument("--headless")  # Exécuter en mode headless si vous ne voulez pas voir le navigateur
+### Voir https://www.automationtestinghub.com/download-chrome-driver/ pour télécharger le chromedriver
 service = Service('D:\\python\\chromedriver-win64\\chromedriver.exe')  # Assurez-vous que le chemin est correct
 
 driver = webdriver.Chrome(service=service, options=options)

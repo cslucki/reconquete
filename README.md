@@ -13,6 +13,15 @@
 
 En suivant ces étapes, vous devriez pouvoir créer et activer votre environnement virtuel, installer les bibliothèques nécessaires et exécuter votre script sans problème.
 
+## Commandes pour récupérer les tweets des candidats ##
+### Méthode 1 : url = f"https://syndication.twitter.com/srv/timeline-profile/screen-name/{username}" ###
+- get_x.py MarionMarechal pour générer un fichier dans ./tweets
+- run_for_all.py pour toutes les entrées dans data.yaml en utilisant get_x_byID.py 
+  - get_x_byID.py s'argument ainsi par run_for_all.py "get_x_byID.py 1 MarionMarechal" 
+- detect_empty_files.py va détecter les fichiers vides
+### Méthode 2 : on lance selenium.webdriver si les tweets ne sont pas accessibles via la méthode précédente ###
+- navigate_xbyID.py 1 pour lancer une méthode alternative qui utilise un login/password
+- run_for_all_empty.py va lancer detect_empty_files.py puis navigate_xbyID.py pour les tweets manquants
 ## Instructions génériques pour la création de fichiers YAML et HTML
 ### Fichier YAML
 
