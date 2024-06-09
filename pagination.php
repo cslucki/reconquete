@@ -11,7 +11,7 @@ function readRecords($filename) {
 $allRecords = readRecords($filename);
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-$perPage = 10;
+$perPage = 60;
 $totalRecords = count($allRecords);
 $totalPages = ceil($totalRecords / $perPage);
 $start = ($page - 1) * $perPage;

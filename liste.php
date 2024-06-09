@@ -4,31 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Liste des enregistrements</title>
+<!-- Inclure Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <style>
-/* Styles CSS facultatifs pour la mise en page */
+/* Styles CSS pour la mise en page */
+body {
+    background-color: black;
+    color: white;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
+    background-color: black;
+    color: white;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
-th, td {
+th {
+    padding: 10px;
+    background-color: red;
+    color: white;
+}
+
+td {
     padding: 8px;
     text-align: left;
     vertical-align: top; /* Alignement des colonnes sur le haut */
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color: lightblue;
+}
+
 #pagination {
     margin-top: 10px;
 }
+
 #pagination a {
     padding: 5px 10px;
-    background-color: Blue; /* Couleur de fond bleu marine */
+    background-color: blue; /* Couleur de fond bleu marine */
     color: #fff; /* Couleur du texte blanche */
-    border: 1px solid Blue; /* Bordure de la même couleur que le fond */
+    border: 1px solid blue; /* Bordure de la même couleur que le fond */
     text-decoration: none;
     margin-right: 5px;
 }
@@ -37,23 +61,36 @@ th, td {
     background-color: #001a35; /* Couleur de fond bleu marine foncée au survol */
     color: #fff; /* Couleur du texte blanche */
 }
-/* Style pour cacher les détails par défaut */
-.details {
-    display: none;
+
+/* Styles pour la modale */
+.modal-content {
+    background-color: black;
+    color: white;
 }
 
-/* Style pour le conteneur des détails */
-#details-container {
-    margin-top: 20px;
+.modal-header, .modal-footer {
+    border-color: white;
+}
+
+.modal-title {
+    color: white;
+}
+
+.modal-body a {
+    color: white;
+}
+
+.modal-body a:hover {
+    color: lightblue;
 }
 </style>
 </head>
 <body>
 
 <!-- Bouton pour afficher les fichiers -->
-<button id="show-files-btn">Afficher les fichiers</button>
+<!--button id="show-files-btn" class="btn btn-primary">Afficher les fichiers</!--button-->
 
-<table id="records-table">
+<table id="records-table" class="table table-striped">
     <thead>
         <tr>
             <th>Numéro</th>
@@ -68,14 +105,32 @@ th, td {
 
 <div id="pagination"></div>
 
-<!-- Conteneur pour afficher les détails -->
-<div id="details-container"></div>
-
 <!-- Conteneur pour afficher les fichiers -->
 <div id="files-container"></div>
 
-<!-- Script jQuery pour gérer la pagination et afficher les détails -->
+<!-- Modale Bootstrap -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel">Détails de la fiche</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="details-container">
+        <!-- Les détails seront chargés ici via AJAX -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inclure jQuery et Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
 $(document).ready(function(){
     function loadPage(page) {
@@ -90,8 +145,8 @@ $(document).ready(function(){
                 $tbody.empty();
                 $.each(records, function(index, record) {
                     var $tr = $('<tr>');
-                    $tr.append('<td><a href="#" class="details-link">' + record.id + '</a></td>');
-                    $tr.append('<td><a href="#" class="details-link">' + record.nom + '</a></td>');
+                    $tr.append('<td><a href="#" class="details-link" data-id="' + record.id + '">' + record.id + '</a></td>');
+                    $tr.append('<td><a href="#" class="details-link" data-id="' + record.id + '">' + record.nom + '</a></td>');
                     $tr.append('<td><a href="' + record.twitter + '" target="_blank">' + record.twitter + '</a></td>');
                     $tbody.append($tr);
                 });
@@ -117,13 +172,13 @@ $(document).ready(function(){
 
     $(document).on('click', '.details-link', function(e) {
         e.preventDefault();
-        var id = $(this).closest('tr').find('td:first-child').text();
+        var id = $(this).data('id');
         $('#details-container').load('load_detail.php?id=' + id, function(response, status, xhr) {
             if (status == "error") {
                 var msg = "Désolé, une erreur s'est produite: ";
                 $("#details-container").html(msg + xhr.status + " " + xhr.statusText);
             } else {
-                console.log(response); // Afficher la réponse pour le débogage
+                $('#detailsModal').modal('show');
             }
         });
     });
