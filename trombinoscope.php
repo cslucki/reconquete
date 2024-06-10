@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trombinoscope des Candidats</title>
+    <!-- Inclure Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card-img-top {
-            width: 100%;
-            height: 150px; /* Ajustez la hauteur selon vos besoins */
-            object-fit: cover;
-        }
-    </style>
+    <!-- Style reconquete -->
+    <link href="style_reconquete.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -20,7 +16,7 @@
         </div>
     </div>
 
-    <!-- Modale Bootstrap -->
+    <!-- Modale Bootstrap pour les détails -->
     <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -32,6 +28,26 @@
                 </div>
                 <div class="modal-body" id="details-container">
                     <!-- Les détails seront chargés ici via AJAX -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale Bootstrap pour les tweets -->
+    <div class="modal fade" id="tweetsModal" tabindex="-1" aria-labelledby="tweetsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tweetsModalLabel">Tweets du Candidat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="tweets-container">
+                    <!-- Les tweets seront chargés ici via AJAX -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -68,7 +84,9 @@
                         <img src="images/${candidate.id}.jpg" class="card-img-top" alt="${candidate.nom}">
                         <div class="card-body">
                             <h5 class="card-title"><a href="#" class="details-link" data-id="${candidate.id}">${candidate.nom}</a></h5>
-                            <p class="card-text">${candidate.twitter ? `<a href="${candidate.twitter}" target="_blank">Twitter</a>` : ''}</p>
+                            <p class="card-text">
+                                <a href="#" class="tweets-link" data-id="${candidate.id}">Voir les tweets</a>
+                            </p>
                         </div>
                     </div>
                 `;
@@ -93,6 +111,20 @@
                         const img = `<img src="images/${id}.jpg" class="rounded-circle" style="width: 200px; height: auto;" alt="Photo de ${id}">`;
                         $('#details-container').append(img);
                         $('#detailsModal').modal('show');
+                    }
+                });
+            });
+
+            // Charger les tweets dans la modale
+            $(document).on('click', '.tweets-link', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $('#tweets-container').load('tweets_detail.php?candidate_id=' + id, function(response, status, xhr) {
+                    if (status == "error") {
+                        var msg = "Désolé, une erreur s'est produite: ";
+                        $("#tweets-container").html(msg + xhr.status + " " + xhr.statusText);
+                    } else {
+                        $('#tweetsModal').modal('show');
                     }
                 });
             });

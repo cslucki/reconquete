@@ -1,4 +1,10 @@
 # Reconquête! les candidats aux Européennes #
+*<b>Ce script est dans la cadre du projet Fachosphère</b>*
+
+Le projet Fachosphère du collectif LastProd vise à lutter contre la désinformation, la polarisation et la propagation de la haine en ligne. Il analyse les discours de figures controversées de l'extrême droite française, comme Papacito, et examine leur utilisation de l'intelligence artificielle et leur interprétation des faits pour alimenter leurs narratifs. Le projet inclut également des cartographies des extrêmes et suit les publications des candidats de Reconquête!.
+
+Pour plus de détails, consultez la page officielle : *Fachosphère https://lastprod.com/fachosphere*
+
 ## Python pour récupérer les messages sur X ##
 ### Ouvrez CMD et naviguez vers votre répertoire :
 ` cd D:\reconquete\python `
@@ -10,6 +16,11 @@
 `pip install selenium python-dateutil babel pyyaml`
 ### Exécutez votre script
 `python navigate_x.py elonmusk`
+
+### Conversion des tweets ###
+python\convert_tweets.py
+pour générer ./sorted_tweets.json qui est ensuite lu par ./tweets.php
+
 
 En suivant ces étapes, vous devriez pouvoir créer et activer votre environnement virtuel, installer les bibliothèques nécessaires et exécuter votre script sans problème.
 
@@ -37,6 +48,8 @@ Le fichier YAML doit contenir une entrée pour chaque candidat avec les informat
   twitter: "<Adresse_Twitter_du_candidat>"
 # Répétez cette structure pour chaque candidat
 ```
+## ChatGPT pour faire les analyse ##
+Voir https://chatgpt.com/g/g-Nu3SA94cQ-audit-de-la-liste-des-candidats-de-reconquete
 
 ### Fichier HTML
 Le fichier HTML doit inclure les sections suivantes pour chaque candidat, avec les balises <body> en ouverture et fermeture. Les sections peuvent varier en fonction des informations disponibles pour chaque candidat.

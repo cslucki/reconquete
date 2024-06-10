@@ -4,91 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Liste des Tweets</title>
-<!-- Inclure Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-<style>
-/* Styles CSS pour la mise en page */
-body {
-    background-color: black;
-    color: white;
-}
+<!-- Style reconquete -->
+<link href="style_reconquete_tweets.css" rel="stylesheet">
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    background-color: black;
-    color: white;
-}
+<style>::after
 
-table, th, td {
-    border: 1px solid white;
-}
-
-th {
-    padding: 10px;
-    background-color: red;
-    color: white;
-}
-
-td {
-    padding: 8px;
-    text-align: left;
-    vertical-align: top; /* Alignement des colonnes sur le haut */
-    color: white;
-}
-
-a {
-    color: white;
-}
-
-a:hover {
-    color: lightblue;
-}
-
-#pagination {
-    margin-top: 10px;
-}
-
-#pagination a {
-    padding: 5px 10px;
-    background-color: blue; /* Couleur de fond bleu marine */
-    color: #fff; /* Couleur du texte blanche */
-    border: 1px solid blue; /* Bordure de la même couleur que le fond */
-    text-decoration: none;
-    margin-right: 5px;
-}
-
-#pagination a:hover {
-    background-color: #001a35; /* Couleur de fond bleu marine foncée au survol */
-    color: #fff; /* Couleur du texte blanche */
-}
-
-/* Styles pour la modale */
-.modal-content {
-    background-color: black;
-    color: white;
-}
-
-.modal-header, .modal-footer {
-    border-color: white;
-}
-
-.modal-title {
-    color: white;
-}
-
-.modal-body a {
-    color: white;
-}
-
-.modal-body a:hover {
-    color: lightblue;
-}
 </style>
+
 </head>
 <body>
 
-<table id="tweets-table" class="table table-striped">
+	
+Dans le cadre du projet Fachosphère, les tweets émis par les 80 candidats de Reconquête! depuis 2013 ont été compilés. <a href=trombinoscope.php>Voir le trombinoscope</a>.
+<table id="datatablesSimple">
+
     <thead>
         <tr>
             <th>Numéro</th>
@@ -98,42 +27,30 @@ a:hover {
         </tr>
     </thead>
     <tbody>
+
         <?php
-        require 'vendor/autoload.php';
-        use Symfony\Component\Yaml\Yaml;
+        // Lire le fichier JSON
+        $jsonFile = 'sorted_tweets.json';
+        $jsonData = json_decode(file_get_contents($jsonFile), true);
 
-        // Lire le fichier YAML
-        $yamlFile = 'data.yaml';
-        $yamlData = Yaml::parseFile($yamlFile);
+        // Trier les tweets par date en ordre décroissant
+        usort($jsonData, function($a, $b) {
+            return strtotime($b['date']) - strtotime($a['date']);
+        });
 
-        // Créer un tableau associatif pour les candidats
-        $candidates = [];
-        foreach ($yamlData as $candidate) {
-            $candidates[$candidate['id']] = $candidate['nom'];
-        }
-
-        // Lire les fichiers de tweets
-        $tweetFiles = glob('./tweets/*.txt');
+        // Lire les tweets depuis le JSON trié
         $tweetCount = 1;
-
-        foreach ($tweetFiles as $file) {
-            $fileId = basename($file, '.txt');
-            $candidateName = isset($candidates[$fileId]) ? $candidates[$fileId] : 'Inconnu';
-            $tweets = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-            foreach ($tweets as $tweet) {
-                if (strpos($tweet, 'Date:') !== false) {
-                    $date = str_replace('Date: ', '', $tweet);
-                } elseif (strpos($tweet, 'Tweet:') !== false) {
-                    $tweetText = str_replace('Tweet: ', '', $tweet);
-                    echo "<tr>";
-                    echo "<td>{$tweetCount}</td>";
-                    echo "<td>{$candidateName}</td>";
-                    echo "<td>{$date}</td>";
-                    echo "<td>{$tweetText}</td>";
-                    echo "</tr>";
-                    $tweetCount++;
-                }
-            }
+        foreach ($jsonData as $tweet) {
+            $candidateName = $tweet['candidate_name'];
+            $date = $tweet['date'];
+            $tweetText = $tweet['tweet'];
+            echo "<tr>";
+            echo "<td>{$tweetCount}</td>";
+            echo "<td>{$candidateName}</td>";
+            echo "<td>{$date}</td>";
+            echo "<td>{$tweetText}</td>";
+            echo "</tr>";
+            $tweetCount++;
         }
         ?>
     </tbody>
@@ -142,6 +59,26 @@ a:hover {
 <!-- Inclure jQuery et Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<!-- Inclure le fichier JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize DataTable
+    var dataTable = new simpleDatatables.DataTable('#datatablesSimple', {
+        perPage: 10,
+        columns: [
+            { select: 0, sortable: false }, // Désactiver le tri pour la colonne de la case à cocher
+        ],
+        labels: {
+            placeholder: "Rechercher...", // Texte du placeholder pour la recherche
+            perPage: " résultats par page", // Texte pour le menu déroulant de sélection du nombre de résultats par page
+            noRows: "Aucun résultat trouvé", // Message affiché lorsqu'aucun résultat n'est trouvé
+            info: "Affichage de {start} à {end} sur {rows} résultats", // Message affiché indiquant le nombre de résultats affichés
+        }
+    });
 
+
+});
+</script>
 </body>
 </html>
